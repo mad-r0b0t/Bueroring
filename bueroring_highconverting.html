@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BÜRORING eG - Gemeinsam stärker im Fachhandel. Die Genossenschaft für den stationären Büro- und Fachhandel in Deutschland.">
+    <title>BÜRORING eG | Gemeinsam stärker im Fachhandel</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==================== VARIABLES & RESET ==================== */
+        :root {
+            --primary: #1A3A5C;
+            --accent: #E8A020;
+            --bg: #F8F9FC;
+            --text: #1C1C2E;
+            --text-light: #5A5A72;
+            --card: #FFFFFF;
+            --border: #E2E4EB;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img, svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==================== TYPOGRAPHY ==================== */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -0.02em; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.01em; margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        p { color: var(--text-light); margin-bottom: 1rem; font-size: 1.125rem; }
+        
+        .text-center { text-align: center; }
+        .section-header { margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        /* ==================== UTILITIES ==================== */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 6rem 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(232, 160, 32, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #d69018;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 160, 32, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        .btn-outline-light {
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #fff;
+            color: var(--primary);
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-ghost:hover {
+            background-color: rgba(26, 58, 92, 0.05);
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 1.5rem 0;
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            position: absolute;
+            transition: var(--transition);
+        }
+
+        .mobile-toggle span:nth-child(1) { top: 0; }
+        .mobile-toggle span:nth-child(2) { top: 11px; }
+        .mobile-toggle span:nth-child(3) { bottom: 0; }
+
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg); top: 11px; }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg); bottom: 11px; }
+
+        /* ==================== HERO SECTION ==================== */
+        #hero {
+            padding: 10rem 0 6rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 80% 20%, rgba(232, 160, 32, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 10% 80%, rgba(26, 58, 92, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 { margin-bottom: 1.5rem; color: var(--primary); }
+        .hero-content p { font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 90%; }
+        
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat-item strong {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .hero-stat-item span {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-visual-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle at 50% 50%, var(--bg) 0%, transparent 100%);
+            z-index: -1;
+        }
+
+        /* ==================== VALUE PROPOSITION ==================== */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: var(--card);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .value-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: rgba(26, 58, 92, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* ==================== LEISTUNGEN ==================== */
+        #leistungen { background: #fff; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--bg);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            background: var(--card);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .service-card svg {
+            width: 32px;
+            height: 32px;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .service-card:hover svg {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .service-card h4 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .service-card p { font-size: 0.95rem; margin: 0; }
+
+        /* ==================== STATS ==================== */
+        #stats {
+            background-color: var(--primary);
+            color: #fff;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .stat-item p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+            margin: 0;
+        }
+
+        /* ==================== AUDIENCES ==================== */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .audience-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .audience-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .audience-card h3 { color: var(--primary); font-size: 1.75rem; margin-bottom: 1rem; }
+        .audience-card p { flex-grow: 1; margin-bottom: 2rem; }
+        .audience-card .btn { width: 100%; }
+
+        /* ==================== ABOUT ==================== */
+        #about { background: #fff; }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 { color: var(--primary); }
+
+        .about-visual {
+            background: var(--bg);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="%23E2E4EB"/></svg>');
+            z-index: 0;
+        }
+
+        .map-card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--border);
+        }
+
+        .map-marker {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ==================== CTA BANNER ==================== */
+        #cta {
+            padding: 0;
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d2136 100%);
+            border-radius: 24px;
+            padding: 5rem 3rem;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232, 160, 32, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .cta-banner h2 { color: #fff; margin-bottom: 1rem; }
+        .cta-banner p { color: rgba(255, 255, 255, 0.8); max-width: 600px; margin: 0 auto 2.5rem; }
+
+        /* ==================== KONTAKT ==================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-item svg {
+            color: var(--accent);
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .contact-info-item h4 { margin-bottom: 0.25rem; }
+        .contact-info-item p { margin: 0; }
+
+        .contact-form {
+            background: var(--card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--bg);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.1);
+            background: #fff;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--primary);
+            color: #fff;
+            padding: 5rem 0 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+            max-width: 300px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1200px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-grid { gap: 2rem; }
+        }
+
+        @media (max-width: 992px) {
+            .value-grid, .audience-grid { grid-template-columns: 1fr; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 2.5rem; }
+            .hero-ctas, .hero-stats { justify-content: center; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-actions { display: none; }
+            .mobile-toggle { display: block; }
+            
+            /* Mobile Menu Active State */
+            .nav-container.menu-open { position: relative; }
+            .menu-open .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: -1.5rem;
+                width: 100vw;
+                background: #fff;
+                padding: 2rem;
+                box-shadow: var(--shadow-md);
+                gap: 1.5rem;
+                text-align: center;
+            }
+            .menu-open .nav-actions {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: calc(100% + 240px); /* Below links */
+                left: 0;
+                width: 100%;
+                padding: 0 2rem 2rem;
+                background: #fff;
+                box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            }
+
+            .services-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            h1 { font-size: 2.5rem; }
+            
+            #hero { padding-top: 8rem; }
+            .cta-banner { padding: 3rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER / NAVIGATION ==================== -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">BÜRO<span>RING</span> eG</a>
+            
+            <button class="mobile-toggle" aria-label="Menü öffnen">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="#leistungen">Leistungen</a></li>
+                <li><a href="#about">Über uns</a></li>
+                <li><a href="#audiences">Mitgliedschaft</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="https://extranet.bueroring.de" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Händler-Login</a>
+                <a href="#kontakt" class="btn btn-primary">Mitglied werden</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==================== HERO SECTION ==================== -->
+        <section id="hero">
+            <div class="container hero-grid fade-in">
+                <div class="hero-content">
+                    <h1>Gemeinsam stärker im Fachhandel.</h1>
+                    <p>BÜRORING eG verbindet über 1.100 Fachhandelsunternehmen mit gemeinsamen Einkaufsvorteilen, zentraler Logistik und digitalen Services.</p>
+                    <div class="hero-ctas">
+                        <a href="#kontakt" class="btn btn-primary">Jetzt Mitglied werden &rarr;</a>
+                        <a href="#leistungen" class="btn btn-ghost">Mehr erfahren</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat-item">
+                            <strong>1.100+</strong>
+                            <span>Mitglieder</span>
+                        </div>
+                        <div class="hero-stat-item">
+                            <strong>50+</strong>
+                            <span>Jahre Erfahrung</span>
+                        </div>
+                        <div class="hero-stat-item">
+                            <strong>500+</strong>
+                            <span>Vertragslieferanten</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-visual-bg"></div>
+                    <!-- Abstract Modern B2B SVG -->
+                    <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; filter: drop-shadow(0 20px 25px rgba(0,0,0,0.05));">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#1A3A5C" />
+                                <stop offset="100%" stop-color="#2D5A8C" />
+                            </linearGradient>
+                            <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#E8A020" />
+                                <stop offset="100%" stop-color="#F2C264" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="50" y="100" width="300" height="400" rx="24" fill="url(#grad1)" opacity="0.9" />
+                        <rect x="250" y="150" width="300" height="300" rx="24" fill="url(#grad2)" opacity="0.95" />
+                        <circle cx="200" cy="200" r="150" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="10 10" opacity="0.5" />
+                        <path d="M150 400 L450 200" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+                        <circle cx="150" cy="400" r="8" fill="#FFFFFF" />
+                        <circle cx="450" cy="200" r="8" fill="#FFFFFF" />
+                        <!-- Decorative UI elements -->
+                        <rect x="280" y="250" width="200" height="20" rx="10" fill="#FFFFFF" opacity="0.8" />
+                        <rect x="280" y="290" width="150" height="20" rx="10" fill="#FFFFFF" opacity="0.5" />
+                        <rect x="280" y="330" width="180" height="20" rx="10" fill="#FFFFFF" opacity="0.6" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VALUE PROPOSITION ==================== -->
+        <section id="value" class="section">
+            <div class="container fade-in">
+                <div class="value-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h3>Einkaufsmacht bündeln</h3>
+                        <p>Profitieren Sie von exzellenten Konditionen bei über 500 Vertragslieferanten durch unser gemeinsames, starkes Einkaufsvolumen.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <h3>Digital & Zukunftsfest</h3>
+                        <p>Moderne E-Commerce-Lösungen wie brShop24, umfassende IT-Services und smarte Robotic-Lösungen für Ihren Vorsprung.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3>Unabhängig bleiben</h3>
+                        <p>Erleben Sie volle unternehmerische Freiheit in Ihren Entscheidungen, getragen von einem sicheren und starken Netzwerk.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== LEISTUNGEN ==================== -->
+        <section id="leistungen" class="section">
+            <div class="container fade-in">
+                <div class="section-header text-center">
+                    <h2>Unsere Kernleistungen</h2>
+                    <p>Die BÜRORING eG und die büroforum AG bilden gemeinsam ein starkes Fundament für Ihren geschäftlichen Erfolg im Fachhandel.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                        <h4>Vertriebsunterstützung</h4>
+                        <p>Gezielte Maßnahmen und Werkzeuge zur nachhaltigen Steigerung Ihrer Abverkäufe.</p>
+                    </div>
+                    <div class="service-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        <h4>Marketingunterstützung</h4>
+                        <p>Professionelle Kampagnen, Kataloge und Werbemittel für Ihre starke Präsenz.</p>
+                    </div>
+                    <div class="service-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        <h4>IT-Dienstleistungen</h4>
+                        <p>Inklusive der bewährten B2B/B2C e-Commerce-Lösung „brShop24" und mehr.</p>
+                    </div>
+                    <div class="service-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                        <h4>Waren & Logistik</h4>
+                        <p>Zentrale Logistik aus Haan, schnelle Verfügbarkeit und eine starke Eigenmarke.</p>
+                    </div>
+                    <div class="service-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg>
+                        <h4>Robotic</h4>
+                        <p>Automatisierungslösungen zur Optimierung Ihrer internen Prozesse und Lagerhaltung.</p>
+                    </div>
+                    <div class="service-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <h4>Händlergruppen</h4>
+                        <p>Spezialisierte ERFA-Gruppen für gezielten Wissensaustausch auf Augenhöhe.</p>
+                    </div>
+                    <div class="service-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <h4>Zentralregulierung</h4>
+                        <p>Minimierung des administrativen Aufwands durch gebündelte Abrechnungsprozesse.</p>
+                    </div>
+                    <div class="service-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        <h4>Finanzierungen</h4>
+                        <p>Flexible Finanzierungsmodelle für Sie und die Projekte Ihrer Endkunden.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== STATS ==================== -->
+        <section id="stats" class="fade-in">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="1100">0</h3>
+                        <p>Mitglieder & Partner</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="500">0</h3>
+                        <p>Vertragslieferanten</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 class="counter" data-target="50">0</h3>
+                        <p>Jahre am Markt</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== AUDIENCES ==================== -->
+        <section id="audiences" class="section">
+            <div class="container fade-in">
+                <div class="section-header text-center">
+                    <h2>Der richtige Weg für Sie</h2>
+                    <p>Ob Sie Teil unseres Netzwerks werden möchten, bereits Mitglied sind oder als Lieferant mit uns wachsen wollen.</p>
+                </div>
+
+                <div class="audience-grid">
+                    <div class="audience-card">
+                        <h3>Für Händler</h3>
+                        <p>Werden Sie Mitglied der BÜRORING eG. Profitieren Sie sofort von exzellenten Einkaufskonditionen, Zentralregulierung und einem starken Netzwerk gleichgesinnter Fachhändler. Entdecken Sie die Vorteile der BR- oder BF-Mitgliedschaft.</p>
+                        <a href="#kontakt" class="btn btn-primary">Mitglied werden</a>
+                    </div>
+                    <div class="audience-card" style="border-top: 4px solid var(--primary);">
+                        <h3>Für Mitglieder</h3>
+                        <p>Greifen Sie auf alle Services, das Marketingportal, Rechnungsdaten und den Shop zu. Bleiben Sie über Neuigkeiten in der Genossenschaft und bei der büroforum AG auf dem Laufenden.</p>
+                        <a href="https://extranet.bueroring.de" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Zum Login (Extranet)</a>
+                    </div>
+                    <div class="audience-card">
+                        <h3>Für Lieferanten</h3>
+                        <p>Erschließen Sie sich den Zugang zu über 1.100 Fachhändlern in Deutschland. Als Vertragslieferant der BÜRORING eG profitieren Sie von effizienter Distribution und zentraler Zahlungsabwicklung.</p>
+                        <a href="#kontakt" class="btn btn-ghost" style="border: 1px solid var(--border);">Partner werden</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ABOUT ==================== -->
+        <section id="about" class="section">
+            <div class="container fade-in">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2>Eine starke Gemeinschaft.<br>Zwei Säulen für Ihren Erfolg.</h2>
+                        <p>Hinter unserem Netzwerk stehen die <strong>BÜRORING eG</strong> als traditionelle und verlässliche Genossenschaft und die <strong>büroforum AG</strong> als dynamischer Dienstleister.</p>
+                        <p>Gemeinsam agieren wir als Schnittstelle zwischen dem klassischen Fachhandel und der modernen Arbeitswelt. Wir bündeln nicht nur Einkaufsvolumina (PBS, Bürotechnik, IT), sondern entwickeln zukunftsweisende Konzepte für New Work, E-Commerce und Prozessoptimierung.</p>
+                        <ul style="margin-top: 1.5rem;">
+                            <li style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-weight: 500;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Über 50 Jahre Markterfahrung
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-weight: 500;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                Hochmodernes Logistikzentrum in Haan
+                            </li>
+                            <li style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; font-weight: 500;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                100% Fokus auf den Fachhandel
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="about-visual">
+                        <div class="map-card">
+                            <div class="map-marker">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                Unternehmenszentrale
+                            </div>
+                            <h3 style="margin-bottom: 0.25rem;">BÜRORING eG</h3>
+                            <p style="margin-bottom: 1rem; color: var(--text-light);">Siemensstraße 7<br>42781 Haan<br>Deutschland</p>
+                            <!-- Decorative map abstract lines -->
+                            <svg width="100%" height="100" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 50 Q 50 10, 100 50 T 200 50 T 300 50" stroke="var(--border)" stroke-width="2" fill="none"/>
+                                <path d="M0 70 Q 50 30, 100 70 T 200 70 T 300 70" stroke="var(--border)" stroke-width="1" fill="none"/>
+                                <circle cx="150" cy="50" r="6" fill="var(--accent)"/>
+                                <circle cx="150" cy="50" r="16" fill="var(--accent)" opacity="0.2"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CTA BANNER ==================== -->
+        <section id="cta" class="section">
+            <div class="container fade-in">
+                <div class="cta-banner">
+                    <h2>Bereit, Teil des Netzwerks zu werden?</h2>
+                    <p>Profitieren Sie von gemeinsamer Einkaufsmacht, zentraler Logistik und einem starken Netzwerk. Machen Sie Ihr Unternehmen fit für die Zukunft.</p>
+                    <a href="#kontakt" class="btn btn-primary" style="background-color: #fff; color: var(--primary);">Jetzt Mitgliedschaft anfragen</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== KONTAKT ==================== -->
+        <section id="kontakt" class="section">
+            <div class="container fade-in">
+                <div class="section-header text-center">
+                    <h2>Kontaktieren Sie uns</h2>
+                    <p>Wir freuen uns auf Ihre Anfrage. Unser Team meldet sich zeitnah bei Ihnen zurück.</p>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Direkter Draht nach Haan</h3>
+                        <p style="margin-bottom: 2rem;">Egal ob Sie Fragen zur Mitgliedschaft, zu unseren IT-Dienstleistungen oder zur Zentralregulierung haben – wir sind für Sie da.</p>
+                        
+                        <div class="contact-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <div>
+                                <h4>Adresse</h4>
+                                <p>BÜRORING eG<br>Siemensstraße 7<br>42781 Haan</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <div>
+                                <h4>Telefon</h4>
+                                <p><a href="tel:+4921295571100">+49 (0) 21 29 / 55 71-100</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <div>
+                                <h4>E-Mail</h4>
+                                <p><a href="mailto:info@bueroring.de">info@bueroring.de</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-wrapper">
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name / Unternehmen</label>
+                                <input type="text" id="name" class="form-control" placeholder="Ihr Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-Mail Adresse</label>
+                                <input type="email" id="email" class="form-control" placeholder="ihre@email.de" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="grund">Grund der Anfrage</label>
+                                <select id="grund" class="form-control" required>
+                                    <option value="" disabled selected>Bitte wählen...</option>
+                                    <option value="mitgliedschaft">Neue Mitgliedschaft (Händler)</option>
+                                    <option value="lieferant">Lieferantenanfrage</option>
+                                    <option value="allgemein">Allgemeine Anfrage</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="nachricht">Ihre Nachricht</label>
+                                <textarea id="nachricht" class="form-control" placeholder="Wie können wir Ihnen helfen?" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">Nachricht senden</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo" style="color: #fff;">BÜRO<span style="color: var(--accent);">RING</span> eG</div>
+                    <p>Die Genossenschaft für den stationären Büro- und Fachhandel. Gemeinsam bündeln wir Stärken für eine erfolgreiche Zukunft.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" aria-label="Xing">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.24c-.214 0-.395.078-.482.22-.089.151-.089.346.009.536l2.368 4.363c.004.006.004.016 0 .022L.009 18.316c-.095.191-.097.387-.006.535.089.142.251.22.459.22h3.498c.517 0 .741-.325.927-.66 0 0 4.259-7.632 4.506-8.065-.015-.024-2.119-3.903-2.119-3.903-.17-.308-.436-.66-.967-.66H3.648z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Unternehmen</h4>
+                    <ul>
+                        <li><a href="#about">Über uns</a></li>
+                        <li><a href="#leistungen">Leistungen</a></li>
+                        <li><a href="#stats">Zahlen & Fakten</a></li>
+                        <li><a href="https://brshop.bueroring.de/frontpage" target="_blank" rel="noopener noreferrer">brShop24</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Mitglieder & Interessenten</h4>
+                    <ul>
+                        <li><a href="#audiences">Händler werden</a></li>
+                        <li><a href="#audiences">Lieferant werden</a></li>
+                        <li><a href="https://extranet.bueroring.de" target="_blank" rel="noopener noreferrer">Extranet Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="#">Impressum</a></li>
+                        <li><a href="#">Datenschutz</a></li>
+                        <li><a href="#">AGB</a></li>
+                        <li><a href="#">Cookie-Einstellungen</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 BÜRORING eG. Alle Rechte vorbehalten.</div>
+                <div>Siemensstraße 7 | 42781 Haan | Tel: +49 (0) 21 29 / 55 71-100</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Sticky Header ---
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navContainer = document.querySelector('.nav-container');
+            const navLinks = document.querySelectorAll('.nav-links a, .nav-actions a');
+
+            mobileToggle.addEventListener('click', () => {
+                mobileToggle.classList.toggle('active');
+                navContainer.classList.toggle('menu-open');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileToggle.classList.remove('active');
+                    navContainer.classList.remove('menu-open');
+                });
+            });
+
+            // --- Smooth Scroll for Anchor Links (Fallback/Polyfill-like behavior) ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // --- Intersection Observer for Fade-In Elements ---
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            fadeElements.forEach(el => fadeObserver.observe(el));
+
+            // --- Counter Animation ---
+            const counters = document.querySelectorAll('.counter');
+            let started = false;
+
+            const startCounters = () => {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; // ms
+                    const increment = target / (duration / 16); // 60fps
+                    
+                    let current = 0;
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current).toLocaleString('de-DE');
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = target.toLocaleString('de-DE') + (target === 1100 || target === 500 || target === 50 ? '+' : '');
+                        }
+                    };
+                    updateCounter();
+                });
+            };
+
+            const statsSection = document.getElementById('stats');
+            const statsObserver = new IntersectionObserver((entries) => {
+                const entry = entries[0];
+                if (entry.isIntersecting && !started) {
+                    started = true;
+                    startCounters();
+                }
+            }, { threshold: 0.5 });
+
+            if(statsSection) {
+                statsObserver.observe(statsSection);
+            }
+
+            // --- Form Submit Handler (Visual Feedback) ---
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if(contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Animate button
+                    const originalText = submitBtn.innerText;
+                    submitBtn.innerText = "Wird gesendet...";
+                    submitBtn.style.opacity = "0.8";
+                    
+                    setTimeout(() => {
+                        submitBtn.innerText = "Nachricht erfolgreich gesendet!";
+                        submitBtn.style.backgroundColor = "#10B981"; // Success green
+                        submitBtn.style.color = "#fff";
+                        submitBtn.style.opacity = "1";
+                        contactForm.reset();
+                        
+                        setTimeout(() => {
+                            submitBtn.innerText = originalText;
+                            submitBtn.style.backgroundColor = ""; 
+                        }, 4000);
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
